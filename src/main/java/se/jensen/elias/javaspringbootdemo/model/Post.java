@@ -6,12 +6,14 @@ public class Post {
     private Long id = 0L;
     private String content;
     private LocalDateTime createdAt;
+    private User user;
 
     public Post() {
     }
 
-    public Post(String content) {
+    public Post(String content, User user) {
         this.content = content;
+        this.user = user;
         this.createdAt = LocalDateTime.now();
     }
 

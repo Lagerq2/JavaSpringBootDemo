@@ -33,22 +33,22 @@ public class PostController {
                 .body(postsService.createPost(request));
     }
 
-    @GetMapping("/{index}")
-    public ResponseEntity<PostResponseDTO> getPostById(@PathVariable int index) {
-        return ResponseEntity.ok(postsService.getPostById(index));
+    @GetMapping("/{id}")
+    public ResponseEntity<PostResponseDTO> getPostById(@PathVariable Long id) {
+        return ResponseEntity.ok(postsService.getPostById(id));
     }
 
-    @PutMapping("/{index}")
+    @PutMapping("/{id}")
     public ResponseEntity<PostResponseDTO> updatePostById(
-            @PathVariable int index,
+            @PathVariable Long id,
             @Valid @RequestBody PostRequestDTO newPost
     ) {
-        return ResponseEntity.ok(postsService.updatePostById(index, newPost));
+        return ResponseEntity.ok(postsService.updatePostById(id, newPost));
     }
 
-    @DeleteMapping("/{index}")
-    public ResponseEntity<Void> deletePostById(@PathVariable int index) {
-        postsService.deletePostById(index);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePostById(@PathVariable Long id) {
+        postsService.deletePostById(id);
         return ResponseEntity.noContent().build();
     }
 

@@ -10,11 +10,11 @@ public interface PostsService {
 
     PostResponseDTO createPost(PostRequestDTO request);
 
-    PostResponseDTO getPostById(int index);
+    PostResponseDTO getPostById(Long id);
 
-    PostResponseDTO updatePostById(int index, PostRequestDTO newPost);
+    PostResponseDTO updatePostById(Long id, PostRequestDTO newPost);
 
-    void deletePostById(int index);
+    void deletePostById(Long id);
 
     void deleteAllPosts();
 

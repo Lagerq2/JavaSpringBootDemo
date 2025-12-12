@@ -12,9 +12,9 @@ public class User {
 
     }
 
-    public User(Long id, String username) {
+    public User(Long id, String name) {
         this.id = id;
-        this.name = username;
+        this.name = name;
 
     }
 
@@ -26,12 +26,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
+    public String getName() {
         return name;
     }
 
-    public void setUsername(String username) {
-        this.name = username;
+    public void setName(String userName) {
+        this.name = name;
     }
 
     public List<Post> getPosts() {
