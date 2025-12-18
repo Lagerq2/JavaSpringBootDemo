@@ -1,7 +1,6 @@
 package se.jensen.elias.javaspringbootdemo.controller;
 
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.jensen.elias.javaspringbootdemo.dto.request.PostRequestDTO;
@@ -24,14 +23,6 @@ public class PostController {
         return ResponseEntity.ok(postsService.getAllPosts());
     }
 
-    @PostMapping
-    public ResponseEntity<PostResponseDTO> createPost(
-            @Valid @RequestBody PostRequestDTO request
-    ) {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(postsService.createPost(request));
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<PostResponseDTO> getPostById(@PathVariable Long id) {
