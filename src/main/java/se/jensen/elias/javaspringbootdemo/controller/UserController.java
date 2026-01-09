@@ -3,6 +3,7 @@ package se.jensen.elias.javaspringbootdemo.controller;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.jensen.elias.javaspringbootdemo.dto.request.PostRequestDTO;
 import se.jensen.elias.javaspringbootdemo.dto.request.UserRequestDTO;
@@ -24,6 +25,7 @@ public class UserController {
         this.postsService = postsService;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
@@ -44,7 +46,7 @@ public class UserController {
                 .status(HttpStatus.CREATED)
                 .body(postsService.createPost(userId, newPost));
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Long id) {
 

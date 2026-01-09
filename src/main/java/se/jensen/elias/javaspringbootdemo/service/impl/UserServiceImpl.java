@@ -1,11 +1,14 @@
 package se.jensen.elias.javaspringbootdemo.service.impl;
 
+import org.springdoc.core.service.SecurityService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import se.jensen.elias.javaspringbootdemo.dto.request.UserRequestDTO;
 import se.jensen.elias.javaspringbootdemo.dto.response.UserResponseDTO;
 import se.jensen.elias.javaspringbootdemo.mapper.impl.UserMapper;
 import se.jensen.elias.javaspringbootdemo.model.User;
 import se.jensen.elias.javaspringbootdemo.repository.UserRepository;
+import se.jensen.elias.javaspringbootdemo.security.SecurityConfig;
 import se.jensen.elias.javaspringbootdemo.service.UserService;
 
 import java.util.List;
@@ -14,18 +17,21 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     private Long nextId;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper,  PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public UserResponseDTO createUser(UserRequestDTO request) {
 
         User user = userMapper.toEntity(request);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
 
         return userMapper.toResponseDTO(savedUser);
