@@ -52,7 +52,7 @@ public class User {
         this.posts = posts;
     }
 
-    public static User createUser(String username, String email, String password, String displayName, String bio, String profilePicture) {
+    public static User createUser(String username, String email, String password, String displayName, String bio, String profilePicture, String role) {
         User user = new User();
         user.username = username;
         user.email = email;
@@ -60,7 +60,7 @@ public class User {
         user.displayName = displayName;
         user.bio = bio;
         user.profilePicture = profilePicture;
-        user.role = "USER";
+        user.role = role;
         user.posts = new ArrayList<>();
         return user;
     }

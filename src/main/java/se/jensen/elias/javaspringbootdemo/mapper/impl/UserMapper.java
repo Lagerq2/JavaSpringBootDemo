@@ -45,7 +45,8 @@ public class UserMapper implements ResponseMapper<User, UserResponseDTO>,
                 dto.password(),
                 dto.displayName(),
                 dto.bio(),
-                dto.profilePicture()
+                dto.profilePicture(),
+                dto.role()
         );
     }
 }
